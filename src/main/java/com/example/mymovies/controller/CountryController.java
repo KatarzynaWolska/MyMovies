@@ -18,7 +18,6 @@ public class CountryController {
 
     @GetMapping(path = "/countries")
     public List<Country> getCountries() {
-        System.out.println(countryRepo.findAll().get(0).toString());
         return countryRepo.findAll();
     }
 
