@@ -1,6 +1,7 @@
 package com.example.mymovies.model;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -15,11 +16,16 @@ public class Country {
     @Column(name="country_name")
     private String name;
 
-    @OneToMany(mappedBy="country")
+    @OneToMany(mappedBy="country", fetch = FetchType.LAZY)
     private Set<Director> directors;
 
     @OneToMany(mappedBy="country")
     private Set<Actor> actors;
+
+    public Country() {
+        this.directors = new HashSet<>();
+        this.actors = new HashSet<>();
+    }
 
     @Override
     public String toString() {
