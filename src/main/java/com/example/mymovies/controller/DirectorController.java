@@ -1,23 +1,18 @@
 package com.example.mymovies.controller;
 
 import com.example.mymovies.model.Director;
-import com.example.mymovies.repository.CountryRepository;
 import com.example.mymovies.repository.DirectorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 
 @RestController
 public class DirectorController {
 
     @Autowired
     private DirectorRepository directorRepo;
-
-    @Autowired
-    private CountryRepository countryRepo;
 
     @GetMapping(path = "/directors")
     public List<Director> getDirectors() {

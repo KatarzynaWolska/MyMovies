@@ -1,25 +1,30 @@
 package com.example.mymovies.model;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
 @Entity
 @Table(name="country")
+@JsonIdentityInfo(generator= ObjectIdGenerators.PropertyGenerator.class, property="id")
 public class Country {
 
     @Id
     @Column(name="country_id")
     @GeneratedValue(strategy= GenerationType.IDENTITY)
-    private Integer Id;
+    private Integer id;
 
     @Column(name="country_name")
     private String name;
 
-    @OneToMany(mappedBy="country", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy="country", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private Set<Director> directors;
 
-    @OneToMany(mappedBy="country")
+    @OneToMany(mappedBy="country", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private Set<Actor> actors;
 
     public Country() {
@@ -27,17 +32,12 @@ public class Country {
         this.actors = new HashSet<>();
     }
 
-    @Override
-    public String toString() {
-        return name;
-    }
-
     public Integer getId() {
-        return Id;
+        return id;
     }
 
     public void setId(Integer id) {
-        Id = id;
+        id = id;
     }
 
     public String getName() {
