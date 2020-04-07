@@ -32,8 +32,8 @@ public class Actor {
     @ManyToMany(mappedBy = "actors", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private Set<Movie> movies; // = new HashSet ???
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinColumn(name = "country_id", nullable = false)
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "country_id")
     private Country country;
 
     @OneToMany(mappedBy="actor", cascade = CascadeType.ALL)
@@ -49,7 +49,7 @@ public class Actor {
     }
 
     public void setId(Integer id) {
-        id = id;
+        this.id = id;
     }
 
     public String getName() {

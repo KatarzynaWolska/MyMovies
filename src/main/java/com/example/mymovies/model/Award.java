@@ -10,7 +10,7 @@ public class Award {
     @Id
     @Column(name="award_id")
     @GeneratedValue(strategy= GenerationType.IDENTITY)
-    private Integer Id;
+    private Integer id;
 
     @Column(name="award_name")
     private String name;
