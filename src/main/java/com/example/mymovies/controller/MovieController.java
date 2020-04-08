@@ -1,7 +1,7 @@
 package com.example.mymovies.controller;
 
-import com.example.mymovies.model.Movie;
-import com.example.mymovies.model.MovieCategory;
+import com.example.mymovies.model.*;
+import com.example.mymovies.repository.MovieAwardRepository;
 import com.example.mymovies.repository.MovieCategoryRepository;
 import com.example.mymovies.repository.MovieRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +15,9 @@ public class MovieController {
 
     @Autowired
     private MovieRepository movieRepo;
+
+    @Autowired
+    MovieAwardRepository awardRepo;
 
     @GetMapping(path = "/movies")
     public List<Movie> getMovies() {
@@ -36,4 +39,12 @@ public class MovieController {
         Movie movie = movieRepo.getOne(mid);
         movieRepo.delete(movie); // chyba się usuwa z Set<>
     }
+
+    @PostMapping(path = "/movies/{mid}/awards")
+    public void addMovieAward(@RequestBody Award award, @PathVariable("mid") Integer mid) {
+        Movie movie = movieRepo.getOne(mid);
+        award.setMovie(movie);
+        awardRepo.save(award);
+    }
+
 }

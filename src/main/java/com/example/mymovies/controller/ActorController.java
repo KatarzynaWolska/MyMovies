@@ -1,7 +1,9 @@
 package com.example.mymovies.controller;
 
 import com.example.mymovies.model.Actor;
-import com.example.mymovies.model.Director;
+import com.example.mymovies.model.ActorAward;
+import com.example.mymovies.model.Award;
+import com.example.mymovies.repository.ActorAwardRepository;
 import com.example.mymovies.repository.ActorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -13,7 +15,10 @@ import java.util.Optional;
 public class ActorController {
 
     @Autowired
-    ActorRepository actorRepo;
+    private ActorRepository actorRepo;
+
+    @Autowired
+    private ActorAwardRepository awardRepo;
 
     @GetMapping(path = "/actors")
     public List<Actor> getActors() {
@@ -34,6 +39,13 @@ public class ActorController {
     @DeleteMapping(path = "/actors/{aid}")
     public void deleteActor(@PathVariable("aid") Integer aid) {
         Actor actor = actorRepo.getOne(aid);
-        actorRepo.delete(actor); // chyba się usuwa z Set<>
+        actorRepo.delete(actor);
+    }
+
+    @PostMapping(path = "/actors/{aid}/awards")
+    public void addActorAward(@RequestBody Award award, @PathVariable("aid") Integer aid) {
+        Actor actor = actorRepo.getOne(aid);
+        ActorAward actorAward = new ActorAward(award.getName(), award.getMovie(), actor);
+        awardRepo.save(actorAward);
     }
 }

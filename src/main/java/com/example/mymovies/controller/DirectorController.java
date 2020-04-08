@@ -1,6 +1,7 @@
 package com.example.mymovies.controller;
 
-import com.example.mymovies.model.Director;
+import com.example.mymovies.model.*;
+import com.example.mymovies.repository.DirectorAwardRepository;
 import com.example.mymovies.repository.DirectorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -13,6 +14,9 @@ public class DirectorController {
 
     @Autowired
     private DirectorRepository directorRepo;
+
+    @Autowired
+    private DirectorAwardRepository awardRepo;
 
     @GetMapping(path = "/directors")
     public List<Director> getDirectors() {
@@ -34,5 +38,12 @@ public class DirectorController {
     public void deleteDirector(@PathVariable("did") Integer did) {
         Director director = directorRepo.getOne(did);
         directorRepo.delete(director); // chyba się usuwa z Set<>
+    }
+
+    @PostMapping(path = "/directors/{did}/awards")
+    public void addDirectorAward(@RequestBody Award award, @PathVariable("did") Integer did) {
+        Director director = directorRepo.getOne(did);
+        DirectorAward directorAward = new DirectorAward(award.getName(), award.getMovie(), director);
+        awardRepo.save(directorAward);
     }
 }
