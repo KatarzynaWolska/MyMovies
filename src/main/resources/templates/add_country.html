@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Add country</title>
+</head>
+<body>
+<h1>Add new country</h1>
+<br />
+<div>
+<form action="#" th:action="@{/saveCountry}" th:object="${country}"
+      method="post">
+    <label>Country name</label>
+    <input type="text" th:field="*{name}" />
+    <input type="submit">
+</form>
+</div>
+</body>
+</html>

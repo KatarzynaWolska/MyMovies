@@ -1,49 +1,38 @@
 package com.example.mymovies.controller;
 
-import com.example.mymovies.model.*;
-import com.example.mymovies.repository.DirectorAwardRepository;
-import com.example.mymovies.repository.DirectorRepository;
+import com.example.mymovies.model.Country;
+import com.example.mymovies.model.Director;
+import com.example.mymovies.service.CountryService;
+import com.example.mymovies.service.DirectorService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
-import java.util.Optional;
 
-@RestController
+@Controller
 public class DirectorController {
 
     @Autowired
-    private DirectorRepository directorRepo;
+    private DirectorService directorService;
 
     @Autowired
-    private DirectorAwardRepository awardRepo;
+    private CountryService countryService;
 
-    @GetMapping(path = "/directors")
-    public List<Director> getDirectors() {
-        return directorRepo.findAll();
+    @RequestMapping("/addDirector")
+    public String addDirector(Model model) {
+        Director director = new Director();
+        List<Country> countries = countryService.getCountries();
+        model.addAttribute("director", director);
+        model.addAttribute("countries", countries);
+        return "add_director";
     }
 
-    @PostMapping(path = "/directors", consumes = {"application/json"})
-    public void addDirector(@RequestBody Director director) {
-        directorRepo.save(director);
-        director.getCountry().getDirectors().add(director);
-    }
-
-    @GetMapping(path = "/directors/{did}")
-    public Optional<Director> getDirector(@PathVariable("did") Integer did) {
-        return directorRepo.findById(did);
-    }
-
-    @DeleteMapping(path = "/directors/{did}")
-    public void deleteDirector(@PathVariable("did") Integer did) {
-        Director director = directorRepo.getOne(did);
-        directorRepo.delete(director); // chyba się usuwa z Set<>
-    }
-
-    @PostMapping(path = "/directors/{did}/awards")
-    public void addDirectorAward(@RequestBody Award award, @PathVariable("did") Integer did) {
-        Director director = directorRepo.getOne(did);
-        DirectorAward directorAward = new DirectorAward(award.getName(), award.getMovie(), director);
-        awardRepo.save(directorAward);
+    @RequestMapping("/saveDirector")
+    public String saveDirector(@ModelAttribute("director") Director director) {
+        directorService.addDirector(director);
+        return "redirect:/";
     }
 }

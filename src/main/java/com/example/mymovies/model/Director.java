@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -26,6 +27,7 @@ public class Director {
     private String surname;
 
     @Column(name="director_birth_date")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date date_of_birth;
 
     @ManyToOne(fetch = FetchType.EAGER)
