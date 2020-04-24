@@ -15,7 +15,6 @@ public class AppController {
 
     @RequestMapping("/")
     public String homePage(Model model) {
-        System.out.println(countryService.getCountries());
         return "index";
     }
 }

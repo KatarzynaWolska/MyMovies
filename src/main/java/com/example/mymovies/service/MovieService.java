@@ -18,28 +18,28 @@ public class MovieService {
     @Autowired
     MovieAwardRepository awardRepo;
 
-    @GetMapping(path = "/movies")
+    //@GetMapping(path = "/movies")
     public List<Movie> getMovies() {
         return movieRepo.findAll();
     }
 
-    @PostMapping(path = "/movies", consumes = {"application/json"})
+    //@PostMapping(path = "/movies", consumes = {"application/json"})
     public void addMovie(@RequestBody Movie movie) {
         movieRepo.save(movie);
     }
 
-    @GetMapping(path = "/movies/{mid}")
+    //@GetMapping(path = "/movies/{mid}")
     public Optional<Movie> getMovie(@PathVariable("mid") Integer mid) {
         return movieRepo.findById(mid);
     }
 
-    @DeleteMapping(path = "/movies/{mid}")
+    //@DeleteMapping(path = "/movies/{mid}")
     public void deleteMovie(@PathVariable("mid") Integer mid) {
         Movie movie = movieRepo.getOne(mid);
         movieRepo.delete(movie); // chyba się usuwa z Set<>
     }
 
-    @PostMapping(path = "/movies/{mid}/awards")
+    //@PostMapping(path = "/movies/{mid}/awards")
     public void addMovieAward(@RequestBody Award award, @PathVariable("mid") Integer mid) {
         Movie movie = movieRepo.getOne(mid);
         award.setMovie(movie);

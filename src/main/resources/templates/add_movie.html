@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>Add director</title>
+    <title>Add movie</title>
     <link href="css/styles.css" rel="stylesheet" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/js/all.min.js" crossorigin="anonymous"></script>
 </head>
@@ -60,7 +60,7 @@
             </div>
             <div class="sb-sidenav-footer">
                 <div class="small">Logged in as:</div>
-                Start Bootstrap
+                User
             </div>
         </nav>
     </div>
@@ -72,33 +72,44 @@
                         <div class="card shadow-lg border-0 rounded-lg mt-5">
                             <div class="card-header"><h3 class="text-center font-weight-light my-4">Add director</h3></div>
                             <div class="card-body">
-                                <form action="#" th:action="@{/saveDirector}" th:object="${director}" method="post" >
+                                <form action="#" th:action="@{/saveMovie}" th:object="${movie}" method="post" >
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label class="small mb-1" for="inputName">Name</label>
-                                            <input th:field="*{name}" class="form-control py-4" id="inputName" type="text" placeholder="Enter name" /></div>
+                                            <label class="small mb-1" for="inputTitle">Title</label>
+                                            <input th:field="*{title}" class="form-control py-4" id="inputTitle" type="text" placeholder="Enter title" /></div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label class="small mb-1" for="inputSurname">Surname</label>
-                                            <input th:field="*{surname}" class="form-control py-4" id="inputSurname" type="text" placeholder="Enter surname" /></div>
+                                            <label class="small mb-1" for="inputLength">Length</label>
+                                            <input th:field="*{length}" class="form-control py-4" id="inputLength" type="text" placeholder="Enter length" /></div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label class="small mb-1" for="inputDate">Date of birth</label>
-                                            <input th:field="*{date_of_birth}" class="form-control py-4" id="inputDate" type="date"/></div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label class="small mb-1">Country</label>
-                                            <select th:field="*{country}">
-                                                <option th:each="c : ${countries}" th:value="${c.id}" th:text="${c.name}"></option>
+                                            <label class="small mb-1" >Category</label>
+                                            <select th:field="*{categories}">
+                                                <option th:each="c : ${categories}" th:value="${c.id}" th:text="${c.name}"></option>
                                             </select>
+                                        </div>
                                     </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="small mb-1" >Director</label>
+                                            <select th:field="*{director}">
+                                                <option th:each="d : ${directors}" th:value="${d.id}" th:text="${d.surname}"></option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="small mb-1" >Actors</label>
+                                            <select th:field="*{actors}">
+                                                <option th:each="a : ${actors}" th:value="${a.id}" th:text="${a.surname}"></option>
+                                            </select>
+                                        </div>
                                     </div>
                                     <div class="form-group mt-4 mb-0">
-                                        <input type="submit" class="btn btn-primary btn-block">
-                                    </div>
+                                            <input type="submit" class="btn btn-primary btn-block">
+                                        </div>
                                 </form>
                             </div>
                         </div>

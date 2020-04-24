@@ -14,22 +14,22 @@ public class MovieCategoryService {
     @Autowired
     private MovieCategoryRepository movieCategoryRepo;
 
-    @GetMapping(path = "/categories")
+    //@GetMapping(path = "/categories")
     public List<MovieCategory> getMoviesCategories() {
         return movieCategoryRepo.findAll();
     }
 
-    @PostMapping(path = "/categories", consumes = {"application/json"})
+    //@PostMapping(path = "/categories", consumes = {"application/json"})
     public void addCategory(@RequestBody MovieCategory category) {
         movieCategoryRepo.save(category);
     }
 
-    @GetMapping(path = "/categories/{cid}")
+    //@GetMapping(path = "/categories/{cid}")
     public Optional<MovieCategory> getMovieCategory(@PathVariable("cid") Integer cid) {
         return movieCategoryRepo.findById(cid);
     }
 
-    @DeleteMapping(path = "/categories/{cid}")
+    //@DeleteMapping(path = "/categories/{cid}")
     public void deleteMovieCategory(@PathVariable("cid") Integer cid) {
         MovieCategory category = movieCategoryRepo.getOne(cid);
         movieCategoryRepo.delete(category); // chyba się usuwa z Set<>
