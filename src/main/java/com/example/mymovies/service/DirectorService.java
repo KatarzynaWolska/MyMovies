@@ -18,29 +18,29 @@ public class DirectorService {
     @Autowired
     private DirectorAwardRepository awardRepo;
 
-    @GetMapping(path = "/directors")
+    //@GetMapping(path = "/directors")
     public List<Director> getDirectors() {
         return directorRepo.findAll();
     }
 
-    @PostMapping(path = "/directors", consumes = {"application/json"})
+    //@PostMapping(path = "/directors", consumes = {"application/json"})
     public void addDirector(@RequestBody Director director) {
         directorRepo.save(director);
         director.getCountry().getDirectors().add(director);
     }
 
-    @GetMapping(path = "/directors/{did}")
+    //@GetMapping(path = "/directors/{did}")
     public Optional<Director> getDirector(@PathVariable("did") Integer did) {
         return directorRepo.findById(did);
     }
 
-    @DeleteMapping(path = "/directors/{did}")
+    //@DeleteMapping(path = "/directors/{did}")
     public void deleteDirector(@PathVariable("did") Integer did) {
         Director director = directorRepo.getOne(did);
         directorRepo.delete(director); // chyba się usuwa z Set<>
     }
 
-    @PostMapping(path = "/directors/{did}/awards")
+    //@PostMapping(path = "/directors/{did}/awards")
     public void addDirectorAward(@RequestBody Award award, @PathVariable("did") Integer did) {
         Director director = directorRepo.getOne(did);
         DirectorAward directorAward = new DirectorAward(award.getName(), award.getMovie(), director);

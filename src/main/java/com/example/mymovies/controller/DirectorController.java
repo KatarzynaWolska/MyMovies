@@ -21,6 +21,13 @@ public class DirectorController {
     @Autowired
     private CountryService countryService;
 
+    @RequestMapping("/directors")
+    public String getDirectors(Model model) {
+        List<Director> directors = directorService.getDirectors();
+        model.addAttribute("directors", directors);
+        return "directors";
+    }
+
     @RequestMapping("/addDirector")
     public String addDirector(Model model) {
         Director director = new Director();

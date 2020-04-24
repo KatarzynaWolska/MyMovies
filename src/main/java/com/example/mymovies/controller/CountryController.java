@@ -10,11 +10,20 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import java.util.List;
+
 @Controller
 public class CountryController {
 
     @Autowired
     private CountryService countryService;
+
+    @RequestMapping("/countries")
+    public String getCountries(Model model) {
+        List<Country> countries = countryService.getCountries();
+        model.addAttribute("countries", countries);
+        return "countries";
+    }
 
     @RequestMapping("/addCountry")
     public String addCountry(Model model) {

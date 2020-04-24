@@ -60,29 +60,39 @@
             </div>
             <div class="sb-sidenav-footer">
                 <div class="small">Logged in as:</div>
-                Start Bootstrap
+                User
             </div>
         </nav>
     </div>
     <div id="layoutSidenav_content">
         <main>
             <div class="container-fluid">
-                <div class="row justify-content-center">
-                    <div class="col-lg-7">
-                        <div class="card shadow-lg border-0 rounded-lg mt-5">
-                            <div class="card-header"><h3 class="text-center font-weight-light my-4">Add country</h3></div>
-                            <div class="card-body">
-                                <form action="#" th:action="@{/saveCountry}" th:object="${country}" method="post">
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label class="small mb-1" for="inputCountryName">Country Name</label>
-                                            <input th:field="*{name}" class="form-control py-4" id="inputCountryName" type="text" placeholder="Enter country name" /></div>
-                                    </div>
-                                    <div class="form-group mt-4 mb-0">
-                                        <input type="submit" class="btn btn-primary btn-block">
-                                    </div>
-                                </form>
-                            </div>
+                <h1 class="mt-4">Directors</h1>
+                <ol class="breadcrumb mb-4">
+                    <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
+                    <li class="breadcrumb-item active">Directors</li>
+                </ol>
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Surname</th>
+                                    <th>Date of birth</th>
+                                    <th>Country</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr th:each="d : ${directors}">
+                                    <td th:text="${d.name}"></td>
+                                    <td th:text="${d.surname}"></td>
+                                    <td th:text="${d.date_of_birth}"></td>
+                                    <td th:text="${d.country.name}"></td>
+                                </tr>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
