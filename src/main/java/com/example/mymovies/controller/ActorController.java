@@ -8,9 +8,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 public class ActorController {
@@ -41,5 +43,12 @@ public class ActorController {
     public String saveActor(@ModelAttribute("actor") Actor actor) {
         actorService.addActor(actor);
         return "redirect:/";
+    }
+
+    @RequestMapping("/actors/{aid}")
+    public String getActor(@PathVariable("aid") Integer aid, Model model) {
+        Optional<Actor> actor = actorService.getActor(aid);
+        actor.ifPresent(ac -> model.addAttribute("actor", ac));
+        return "actor_details";
     }
 }

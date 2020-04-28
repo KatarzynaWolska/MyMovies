@@ -4,12 +4,15 @@ import com.example.mymovies.model.*;
 import com.example.mymovies.repository.MovieAwardRepository;
 import com.example.mymovies.repository.MovieRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
 
-@RestController
+@Service
+@Transactional
 public class MovieService {
 
     @Autowired

@@ -6,12 +6,15 @@ import com.example.mymovies.model.Award;
 import com.example.mymovies.repository.ActorAwardRepository;
 import com.example.mymovies.repository.ActorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
 
-@RestController
+@Service
+@Transactional
 public class ActorService {
 
     @Autowired
@@ -32,7 +35,7 @@ public class ActorService {
     }
 
     //@GetMapping(path = "/actors/{aid}")
-    public Optional<Actor> getActor(@PathVariable("aid") Integer aid) {
+    public Optional<Actor> getActor(Integer aid) {
         return actorRepo.findById(aid);
     }
 
