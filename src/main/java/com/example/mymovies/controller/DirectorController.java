@@ -1,5 +1,6 @@
 package com.example.mymovies.controller;
 
+import com.example.mymovies.model.Actor;
 import com.example.mymovies.model.Country;
 import com.example.mymovies.model.Director;
 import com.example.mymovies.service.CountryService;
@@ -8,9 +9,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 public class DirectorController {
@@ -41,5 +44,12 @@ public class DirectorController {
     public String saveDirector(@ModelAttribute("director") Director director) {
         directorService.addDirector(director);
         return "redirect:/";
+    }
+
+    @RequestMapping("/directors/{did}")
+    public String getDirector(@PathVariable("did") Integer did, Model model) {
+        Optional<Director> director = directorService.getDirector(did);
+        director.ifPresent(d -> model.addAttribute("director", d));
+        return "director_details";
     }
 }

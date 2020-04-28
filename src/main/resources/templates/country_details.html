@@ -6,8 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>Add country</title>
-    <link href="/css/styles.css" rel="stylesheet" />
+    <title>Country details</title>
+    <link th:href="@{/css/styles.css}" rel="stylesheet" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/js/all.min.js" crossorigin="anonymous"></script>
 </head>
 <body class="sb-nav-fixed">
@@ -67,39 +67,20 @@
     <div id="layoutSidenav_content">
         <main>
             <div class="container-fluid">
-                <h1 class="mt-4">Actors</h1>
+                <h1 class="mt-4">Country</h1>
                 <ol class="breadcrumb mb-4">
                     <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
-                    <li class="breadcrumb-item active">Actors</li>
+                    <li class="breadcrumb-item active">Countries</li>
                 </ol>
-                <a href="/addActor" class="btn btn-primary" > Add actor </a>
                 <div class="card mb-4">
                     <div class="card-body">
-                        <div class="table-responsive">
-                            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                <thead>
-                                <tr>
-                                    <th>Name</th>
-                                    <th>Surname</th>
-                                    <th>Date of birth</th>
-                                    <th>Country</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <tr th:each="a : ${actors}">
-                                    <td th:text="${a.name}"></td>
-                                    <td th:text="${a.surname}"></td>
-                                    <td th:text="${a.date_of_birth}"></td>
-                                    <td th:text="${a.country.name}"></td>
-
-                                    <td>
-                                        <form th:action="@{/actors/{path}(path=${a.id})}">
-                                            <button>More</button>
-                                        </form>
-                                    </td>
-                                </tr>
-                                </tbody>
-                            </table>
+                        <div class="form-row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="col-form-label" for="inputName">Name:</label>
+                                    <label class="col-form-label" id="inputName" th:text="${country.name}"></label>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -121,10 +102,10 @@
 </div>
 <script src="https://code.jquery.com/jquery-3.4.1.min.js" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-<script src="/js/scripts.js"></script>
+<script th:href="@{/js/scripts.js}"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
-<script src="/assets/demo/chart-area-demo.js"></script>
-<script src="/assets/demo/chart-bar-demo.js"></script>
-<script src="/assets/demo/chart-pie-demo.js"></script>
+<script th:href="@{/assets/demo/chart-area-demo.js}"></script>
+<script th:href="@{/assets/demo/chart-bar-demo.js}"></script>
+<script th:href="@{/assets/demo/chart-pie-demo.js}"></script>
 </body>
 </html>

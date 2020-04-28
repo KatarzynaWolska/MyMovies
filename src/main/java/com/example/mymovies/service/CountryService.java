@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @Transactional
@@ -30,5 +31,9 @@ public class CountryService {
     public void deleteCountry(Integer id) {
         Country country = countryRepo.getOne(id);
         countryRepo.delete(country);
+    }
+
+    public Optional<Country> getCountry(Integer cid) {
+        return countryRepo.findById(cid);
     }
 }

@@ -1,5 +1,6 @@
 package com.example.mymovies.controller;
 
+import com.example.mymovies.model.Actor;
 import com.example.mymovies.model.Country;
 import com.example.mymovies.service.CountryService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 public class CountryController {
@@ -42,5 +44,12 @@ public class CountryController {
     public String deleteCountry(@PathVariable("cid") Integer cid) {
         countryService.deleteCountry(cid);
         return "redirect:/";
+    }
+
+    @RequestMapping("/countries/{cid}")
+    public String getCountry(@PathVariable("cid") Integer cid, Model model) {
+        Optional<Country> country = countryService.getCountry(cid);
+        country.ifPresent(c -> model.addAttribute("country", c));
+        return "country_details";
     }
 }
