@@ -98,7 +98,7 @@
                                     <td th:text="${d.name}"></td>
                                     <td th:text="${d.surname}"></td>
                                     <td th:text="${d.date_of_birth}"></td>
-                                    <td th:text="${d.country.name}"></td>
+                                    <td th:text="${d.country?.name}"></td>
 
                                     <td>
                                         <form th:action="@{/directors/{path}(path=${d.id})}">

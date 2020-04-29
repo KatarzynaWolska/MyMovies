@@ -43,7 +43,7 @@ public class CountryController {
     @RequestMapping("/deleteCountry/{cid}")
     public String deleteCountry(@PathVariable("cid") Integer cid) {
         countryService.deleteCountry(cid);
-        return "redirect:/";
+        return "redirect:/countries";
     }
 
     @RequestMapping("/countries/{cid}")

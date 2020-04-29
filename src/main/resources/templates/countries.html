@@ -98,6 +98,11 @@
                                             <button>More</button>
                                         </form>
                                     </td>
+
+                                    <td>
+                                        <form th:action="@{/deleteCountry/{path}(path=${c.id})}">
+                                            <button>Delete</button>
+                                        </form>
                                     </td>
                                 </tr>
                                 </tbody>

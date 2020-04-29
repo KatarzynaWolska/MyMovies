@@ -62,4 +62,13 @@ public class MovieController {
         movie.ifPresent(m -> model.addAttribute("movie", m));
         return "movie_details";
     }
+
+    @RequestMapping("/deleteMovie/{mid}")
+    public String deleteMovie(@PathVariable("mid") Integer mid) {
+        Optional<Movie> movie = movieService.getMovie(mid);
+        movie.ifPresent(m -> m.getActors().forEach(actor -> actor.setMovies(null)));
+        movie.ifPresent(m -> m.getAwards().forEach(award -> award.setMovie(null)));
+        movieService.deleteMovie(mid);
+        return "redirect:/movies";
+    }
 }

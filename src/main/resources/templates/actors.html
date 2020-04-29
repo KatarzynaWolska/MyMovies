@@ -98,11 +98,16 @@
                                     <td th:text="${a.name}"></td>
                                     <td th:text="${a.surname}"></td>
                                     <td th:text="${a.date_of_birth}"></td>
-                                    <td th:text="${a.country.name}"></td>
+                                    <td th:text="${a.country?.name}"></td>
 
                                     <td>
                                         <form th:action="@{/actors/{path}(path=${a.id})}">
                                             <button>More</button>
+                                        </form>
+                                    </td>
+                                    <td>
+                                        <form th:action="@{/deleteActor/{path}(path=${a.id})}">
+                                            <button>Delete</button>
                                         </form>
                                     </td>
                                 </tr>

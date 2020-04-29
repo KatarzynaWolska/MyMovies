@@ -44,4 +44,12 @@ public class MovieCategoryController {
         category.ifPresent(c -> model.addAttribute("category", c));
         return "movie_category_details";
     }
+
+    @RequestMapping("/deleteMovieCategory/{cid}")
+    public String deleteMovieCategory(@PathVariable("cid") Integer cid) {
+        Optional<MovieCategory> movieCategory = categoryService.getMovieCategory(cid);
+        movieCategory.ifPresent(category -> category.getMovies().forEach(movie -> movie.setCategories(null)));
+        categoryService.deleteMovieCategory(cid);
+        return "redirect:/movieCategories";
+    }
 }

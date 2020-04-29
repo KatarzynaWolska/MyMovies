@@ -31,14 +31,14 @@ public class Actor {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date date_of_birth;
 
-    @ManyToMany(mappedBy = "actors", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @ManyToMany(mappedBy = "actors", fetch = FetchType.EAGER)
     private Set<Movie> movies; // = new HashSet ???
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "country_id")
     private Country country;
 
-    @OneToMany(mappedBy="actor", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy="actor")
     private Set<ActorAward> awards;
 
     public Actor() {

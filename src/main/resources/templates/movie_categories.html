@@ -99,6 +99,12 @@
                                             <button>More</button>
                                         </form>
                                     </td>
+
+                                    <td>
+                                        <form th:action="@{/deleteMovieCategory/{path}(path=${c.id})}">
+                                            <button>Delete</button>
+                                        </form>
+                                    </td>
                                 </tr>
                                 </tbody>
                             </table>

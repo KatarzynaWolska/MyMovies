@@ -35,7 +35,7 @@ public class Movie {
     )
     private Set<MovieCategory> categories; // = new HashSet ???, private ???
 
-    @ManyToMany(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
             name = "Movie_Actor",
             joinColumns = { @JoinColumn(name = "movie_id") },

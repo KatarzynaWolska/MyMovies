@@ -98,12 +98,19 @@
                                 <tr th:each="m : ${movies}">
                                     <td th:text="${m.title}"></td>
                                     <td th:text="${m.length}"></td>
-                                    <td th:each="c : ${m.categories}" th:text="${c.name}"></td>
+                                    <td th:if="${m.categories != null}" th:each="c : ${m.categories}" th:text="${c.name}"></td>
+                                    <td th:if="${m.categories == null}" th:text=""></td>
                                     <td th:text="${m?.director}"></td>
 
                                     <td>
                                         <form th:action="@{/movies/{path}(path=${m.id})}">
                                             <button>More</button>
+                                        </form>
+                                    </td>
+
+                                    <td>
+                                        <form th:action="@{/deleteMovie/{path}(path=${m.id})}">
+                                            <button>Delete</button>
                                         </form>
                                     </td>
                                 </tr>

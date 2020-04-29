@@ -2,6 +2,7 @@ package com.example.mymovies.controller;
 
 import com.example.mymovies.model.Actor;
 import com.example.mymovies.model.Country;
+import com.example.mymovies.model.MovieCategory;
 import com.example.mymovies.service.ActorService;
 import com.example.mymovies.service.CountryService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,5 +51,13 @@ public class ActorController {
         Optional<Actor> actor = actorService.getActor(aid);
         actor.ifPresent(ac -> model.addAttribute("actor", ac));
         return "actor_details";
+    }
+
+    @RequestMapping("/deleteActor/{aid}")
+    public String deleteActor(@PathVariable("aid") Integer aid) {
+        Optional<Actor> actor = actorService.getActor(aid);
+        actor.ifPresent(ac -> ac.getMovies().forEach(movie -> movie.setActors(null)));
+        actorService.deleteActor(aid);
+        return "redirect:/actors";
     }
 }
