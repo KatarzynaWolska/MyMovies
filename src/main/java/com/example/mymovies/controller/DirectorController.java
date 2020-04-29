@@ -52,4 +52,10 @@ public class DirectorController {
         director.ifPresent(d -> model.addAttribute("director", d));
         return "director_details";
     }
+
+    @RequestMapping("/deleteDirector/{did}")
+    public String deleteDirector(@PathVariable("did") Integer did) {
+        directorService.deleteDirector(did);
+        return "redirect:/directors";
+    }
 }

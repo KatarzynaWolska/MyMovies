@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @Service
 @Transactional
@@ -40,6 +41,8 @@ public class DirectorService {
     //@DeleteMapping(path = "/directors/{did}")
     public void deleteDirector(@PathVariable("did") Integer did) {
         Director director = directorRepo.getOne(did);
+        Set<Movie> movies = director.getMovies();
+        movies.forEach(movie -> movie.setDirector(null));
         directorRepo.delete(director); // chyba się usuwa z Set<>
     }
 

@@ -23,7 +23,7 @@ public class Movie {
     @Column(name="length")
     private String length; //TODO jak przedstawiać długość
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "director_id")
     private Director director;
 

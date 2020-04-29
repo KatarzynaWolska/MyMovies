@@ -105,6 +105,12 @@
                                             <button>More</button>
                                         </form>
                                     </td>
+
+                                    <td>
+                                        <form th:action="@{/deleteDirector/{path}(path=${d.id})}">
+                                            <button>Delete</button>
+                                        </form>
+                                    </td>
                                 </tr>
                                 </tbody>
                             </table>

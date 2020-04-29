@@ -7,6 +7,7 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import java.security.AlgorithmConstraints;
 import java.util.Date;
 import java.util.Set;
 
@@ -30,8 +31,8 @@ public class Director {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date date_of_birth;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "country_id", nullable = false)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "country_id")
     private Country country;
 
     @OneToMany(mappedBy="director")

@@ -21,10 +21,10 @@ public class Country {
     @Column(name="country_name")
     private String name;
 
-    @OneToMany(mappedBy="country", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy="country", fetch = FetchType.LAZY)
     private Set<Director> directors;
 
-    @OneToMany(mappedBy="country", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy="country", fetch = FetchType.LAZY)
     private Set<Actor> actors;
 
     public Country() {
