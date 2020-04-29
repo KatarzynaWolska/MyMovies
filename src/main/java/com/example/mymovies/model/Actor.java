@@ -101,4 +101,9 @@ public class Actor {
     public void setAwards(Set<ActorAward> awards) {
         this.awards = awards;
     }
+
+    @Override
+    public String toString() {
+        return this.name + " " + this.surname;
+    }
 }

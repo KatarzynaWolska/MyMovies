@@ -95,4 +95,9 @@ public class Director {
     public void setAwards(Set<DirectorAward> awards) {
         this.awards = awards;
     }
+
+    @Override
+    public String toString() {
+        return this.name + " " + this.surname;
+    }
 }

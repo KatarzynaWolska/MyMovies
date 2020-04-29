@@ -6,9 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 public class MovieCategoryController {
@@ -34,5 +36,12 @@ public class MovieCategoryController {
     public String saveMovieCategory(@ModelAttribute("category") MovieCategory category) {
         categoryService.addCategory(category);
         return "redirect:/";
+    }
+
+    @RequestMapping("/movieCategories/{mid}")
+    public String getMovieCategory(@PathVariable("mid") Integer mid, Model model) {
+        Optional<MovieCategory> category = categoryService.getMovieCategory(mid);
+        category.ifPresent(c -> model.addAttribute("category", c));
+        return "movie_category_details";
     }
 }

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -51,9 +51,17 @@
                                     <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
                                     Actors
                                 </a>
+                                <a class="nav-link" href="/movieCategories"
+                                ><div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
+                                    Movie categories</a
+                                >
                                 <a class="nav-link" href="/movies"
                                 ><div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
                                     Movies</a
+                                >
+                                <a class="nav-link" href="/awards"
+                                ><div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
+                                    Awards</a
                                 >
                             </div>
                     </div>
@@ -92,6 +100,12 @@
                                     <td th:text="${m.length}"></td>
                                     <td th:each="c : ${m.categories}" th:text="${c.name}"></td>
                                     <td th:text="${m.director.surname}"></td>
+
+                                    <td>
+                                        <form th:action="@{/movies/{path}(path=${m.id})}">
+                                            <button>More</button>
+                                        </form>
+                                    </td>
                                 </tr>
                                 </tbody>
                             </table>

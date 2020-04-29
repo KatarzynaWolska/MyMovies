@@ -9,9 +9,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 public class MovieController {
@@ -52,5 +54,12 @@ public class MovieController {
     public String saveMovie(@ModelAttribute("movie") Movie movie) {
         movieService.addMovie(movie);
         return "redirect:/";
+    }
+
+    @RequestMapping("/movies/{mid}")
+    public String getMovie(@PathVariable("mid") Integer mid, Model model) {
+        Optional<Movie> movie = movieService.getMovie(mid);
+        movie.ifPresent(m -> model.addAttribute("movie", m));
+        return "movie_details";
     }
 }
