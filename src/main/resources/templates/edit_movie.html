@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>Add movie</title>
+    <title>Edit movie</title>
     <link href="/css/styles.css" rel="stylesheet" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/js/all.min.js" crossorigin="anonymous"></script>
 </head>
@@ -76,9 +76,10 @@
                 <div class="row justify-content-center">
                     <div class="col-lg-7">
                         <div class="card shadow-lg border-0 rounded-lg mt-5">
-                            <div class="card-header"><h3 class="text-center font-weight-light my-4">Add movie</h3></div>
+                            <div class="card-header"><h3 class="text-center font-weight-light my-4">Edit</h3></div>
                             <div class="card-body">
                                 <form action="#" th:action="@{/saveMovie}" th:object="${movie}" method="post" >
+                                    <input th:field="*{id}" type="hidden">
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label class="small mb-1" for="inputTitle">Title</label>
@@ -109,13 +110,13 @@
                                         <div class="form-group">
                                             <label class="small mb-1" >Actors</label>
                                             <select th:field="*{actors}">
-                                                <option th:each="a : ${actors}" th:value="${a.id}" th:text="${a.surname}"></option>
+                                                <option th:each="a : ${actors}" th:value="${a.id}" th:text="${a}"></option>
                                             </select>
                                         </div>
                                     </div>
                                     <div class="form-group mt-4 mb-0">
-                                            <input type="submit" class="btn btn-primary btn-block">
-                                        </div>
+                                        <input type="submit" class="btn btn-primary btn-block">
+                                    </div>
                                 </form>
                             </div>
                         </div>

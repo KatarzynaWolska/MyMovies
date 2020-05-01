@@ -58,4 +58,12 @@ public class DirectorController {
         directorService.deleteDirector(did);
         return "redirect:/directors";
     }
+
+    @RequestMapping("/editDirector/{did}")
+    public String editDirector(@PathVariable("did") Integer did, Model model) {
+        Optional<Director> director = directorService.getDirector(did);
+        director.ifPresent(d -> model.addAttribute("director", d));
+        model.addAttribute("countries", countryService.getCountries());
+        return "edit_director";
+    }
 }

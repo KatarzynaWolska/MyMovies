@@ -60,4 +60,12 @@ public class ActorController {
         actorService.deleteActor(aid);
         return "redirect:/actors";
     }
+
+    @RequestMapping("/editActor/{aid}")
+    public String editActor(@PathVariable("aid") Integer aid, Model model) {
+        Optional<Actor> actor = actorService.getActor(aid);
+        actor.ifPresent(ac -> model.addAttribute("actor", ac));
+        model.addAttribute("countries", countryService.getCountries());
+        return "edit_actor";
+    }
 }

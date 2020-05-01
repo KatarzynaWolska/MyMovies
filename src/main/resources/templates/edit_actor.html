@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>Add movie</title>
+    <title>Edit director</title>
     <link href="/css/styles.css" rel="stylesheet" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/js/all.min.js" crossorigin="anonymous"></script>
 </head>
@@ -31,36 +31,38 @@
         <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
             <div class="sb-sidenav-menu">
                 <div class="nav">
-                    <div class="nav">
-                        <!--<div class="sb-sidenav-menu-heading">Core</div> -->
-                        <a class="nav-link" href="/"
-                        ><div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-                            Dashboard</a
-                        >
-                        <!--<div class="sb-sidenav-menu-heading">Addons</div>-->
-                        <a class="nav-link" href="/countries"
-                        ><div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
-                            Countries</a
-                        ><a class="nav-link" href="/directors"
-                    ><div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
-                        Directors</a
-                    >
-                        <a class="nav-link" href="/actors">
-                            <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
-                            Actors
-                        </a>
-                        <a class="nav-link" href="/movieCategories"
+                    <div class="sb-sidenav-menu">
+                        <div class="nav">
+                            <!--<div class="sb-sidenav-menu-heading">Core</div> -->
+                            <a class="nav-link" href="/"
+                            ><div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                                Dashboard</a
+                            >
+                            <!--<div class="sb-sidenav-menu-heading">Addons</div>-->
+                            <a class="nav-link" href="/countries"
+                            ><div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
+                                Countries</a
+                            ><a class="nav-link" href="/directors"
                         ><div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
-                            Movie categories</a
+                            Directors</a
                         >
-                        <a class="nav-link" href="/movies"
-                        ><div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
-                            Movies</a
-                        >
-                        <a class="nav-link" href="/awards"
-                        ><div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
-                            Awards</a
-                        >
+                            <a class="nav-link" href="/actors">
+                                <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
+                                Actors
+                            </a>
+                            <a class="nav-link" href="/movieCategories"
+                            ><div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
+                                Movie categories</a
+                            >
+                            <a class="nav-link" href="/movies"
+                            ><div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
+                                Movies</a
+                            >
+                            <a class="nav-link" href="/awards"
+                            ><div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
+                                Awards</a
+                            >
+                        </div>
                     </div>
                 </div>
             </div>
@@ -76,46 +78,36 @@
                 <div class="row justify-content-center">
                     <div class="col-lg-7">
                         <div class="card shadow-lg border-0 rounded-lg mt-5">
-                            <div class="card-header"><h3 class="text-center font-weight-light my-4">Add movie</h3></div>
+                            <div class="card-header"><h3 class="text-center font-weight-light my-4">Edit actor</h3></div>
                             <div class="card-body">
-                                <form action="#" th:action="@{/saveMovie}" th:object="${movie}" method="post" >
+                                <form action="#" th:action="@{/saveActor}" th:object="${actor}" method="post" >
+                                    <input th:field="*{id}" type="hidden">
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label class="small mb-1" for="inputTitle">Title</label>
-                                            <input th:field="*{title}" class="form-control py-4" id="inputTitle" type="text" placeholder="Enter title" /></div>
+                                            <label class="small mb-1" for="inputName">Name</label>
+                                            <input th:field="*{name}" class="form-control py-4" id="inputName" type="text" placeholder="Enter name" /></div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label class="small mb-1" for="inputLength">Length</label>
-                                            <input th:field="*{length}" class="form-control py-4" id="inputLength" type="text" placeholder="Enter length" /></div>
+                                            <label class="small mb-1" for="inputSurname">Surname</label>
+                                            <input th:field="*{surname}" class="form-control py-4" id="inputSurname" type="text" placeholder="Enter surname" /></div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label class="small mb-1" >Category</label>
-                                            <select th:field="*{categories}">
-                                                <option th:each="c : ${categories}" th:value="${c.id}" th:text="${c.name}"></option>
-                                            </select>
-                                        </div>
+                                            <label class="small mb-1" for="inputDate">Date of birth</label>
+                                            <input th:field="*{date_of_birth}" class="form-control py-4" id="inputDate" type="date"/></div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label class="small mb-1" >Director</label>
-                                            <select th:field="*{director}">
-                                                <option th:each="d : ${directors}" th:value="${d.id}" th:text="${d.surname}"></option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label class="small mb-1" >Actors</label>
-                                            <select th:field="*{actors}">
-                                                <option th:each="a : ${actors}" th:value="${a.id}" th:text="${a.surname}"></option>
+                                            <label class="small mb-1" >Country</label>
+                                            <select th:field="*{country}">
+                                                <option th:each="c : ${countries}" th:value="${c.id}" th:text="${c.name}"></option>
                                             </select>
                                         </div>
                                     </div>
                                     <div class="form-group mt-4 mb-0">
-                                            <input type="submit" class="btn btn-primary btn-block">
-                                        </div>
+                                        <input type="submit" class="btn btn-primary btn-block">
+                                    </div>
                                 </form>
                             </div>
                         </div>

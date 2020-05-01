@@ -52,4 +52,11 @@ public class MovieCategoryController {
         categoryService.deleteMovieCategory(cid);
         return "redirect:/movieCategories";
     }
+
+    @RequestMapping("/editMovieCategory/{mid}")
+    public String editMovieCategory(@PathVariable("mid") Integer mid, Model model) {
+        Optional<MovieCategory> category = categoryService.getMovieCategory(mid);
+        category.ifPresent(c -> model.addAttribute("category", c));
+        return "edit_movie_category";
+    }
 }

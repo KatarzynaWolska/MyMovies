@@ -80,6 +80,10 @@
                     <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
                     <li class="breadcrumb-item active">Actors</li>
                 </ol>
+
+                <form th:action="@{/editActor/{path}(path=${actor.id})}">
+                    <button>Edit</button>
+                </form>
                 <div class="card mb-4">
                     <div class="card-body">
                         <div class="form-row">
