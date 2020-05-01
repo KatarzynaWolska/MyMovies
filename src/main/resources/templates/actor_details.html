@@ -110,6 +110,31 @@
                                 </div>
                             </div>
                         </div>
+
+                        <label class="col-form-label">Movies:</label>
+
+                        <div class="table-responsive">
+                            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                <thead>
+                                <tr>
+                                    <th>Title</th>
+                                    <th>Length</th>
+                                    <th>Category</th>
+                                    <th>Director</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr th:each="m : ${movies}">
+                                    <td th:text="${m.title}"></td>
+                                    <td th:text="${m.length}"></td>
+                                    <td th:if="${m.categories != null}" th:each="c : ${m.categories}" th:text="${c.name}"></td>
+                                    <td th:if="${m.categories == null}" th:text=""></td>
+                                    <td th:text="${m?.director}"></td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
                         </div>
                     </div>
             </div>

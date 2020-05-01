@@ -50,6 +50,7 @@ public class ActorController {
     public String getActor(@PathVariable("aid") Integer aid, Model model) {
         Optional<Actor> actor = actorService.getActor(aid);
         actor.ifPresent(ac -> model.addAttribute("actor", ac));
+        actor.ifPresent(ac -> model.addAttribute("movies", ac.getMovies()));
         return "actor_details";
     }
 

@@ -42,6 +42,7 @@ public class MovieCategoryController {
     public String getMovieCategory(@PathVariable("mid") Integer mid, Model model) {
         Optional<MovieCategory> category = categoryService.getMovieCategory(mid);
         category.ifPresent(c -> model.addAttribute("category", c));
+        category.ifPresent(c -> model.addAttribute("movies", c.getMovies()));
         return "movie_category_details";
     }
 

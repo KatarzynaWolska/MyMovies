@@ -50,6 +50,7 @@ public class DirectorController {
     public String getDirector(@PathVariable("did") Integer did, Model model) {
         Optional<Director> director = directorService.getDirector(did);
         director.ifPresent(d -> model.addAttribute("director", d));
+        director.ifPresent(d -> model.addAttribute("movies", d.getMovies()));
         return "director_details";
     }
 
