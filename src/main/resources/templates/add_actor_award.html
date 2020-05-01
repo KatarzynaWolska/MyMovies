@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>Edit director</title>
+    <title>Add actor award</title>
     <link href="/css/styles.css" rel="stylesheet" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/js/all.min.js" crossorigin="anonymous"></script>
 </head>
@@ -31,38 +31,36 @@
         <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
             <div class="sb-sidenav-menu">
                 <div class="nav">
-                    <div class="sb-sidenav-menu">
-                        <div class="nav">
-                            <!--<div class="sb-sidenav-menu-heading">Core</div> -->
-                            <a class="nav-link" href="/"
-                            ><div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-                                Dashboard</a
-                            >
-                            <!--<div class="sb-sidenav-menu-heading">Addons</div>-->
-                            <a class="nav-link" href="/countries"
-                            ><div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
-                                Countries</a
-                            ><a class="nav-link" href="/directors"
-                        ><div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
-                            Directors</a
+                    <div class="nav">
+                        <!--<div class="sb-sidenav-menu-heading">Core</div> -->
+                        <a class="nav-link" href="/"
+                        ><div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                            Dashboard</a
                         >
-                            <a class="nav-link" href="/actors">
-                                <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
-                                Actors
-                            </a>
-                            <a class="nav-link" href="/movieCategories"
-                            ><div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
-                                Movie categories</a
-                            >
-                            <a class="nav-link" href="/movies"
-                            ><div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
-                                Movies</a
-                            >
-                            <a class="nav-link" href="/awards"
-                            ><div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
-                                Awards</a
-                            >
-                        </div>
+                        <!--<div class="sb-sidenav-menu-heading">Addons</div>-->
+                        <a class="nav-link" href="/countries"
+                        ><div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
+                            Countries</a
+                        ><a class="nav-link" href="/directors"
+                    ><div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
+                        Directors</a
+                    >
+                        <a class="nav-link" href="/actors">
+                            <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
+                            Actors
+                        </a>
+                        <a class="nav-link" href="/movieCategories"
+                        ><div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
+                            Movie categories</a
+                        >
+                        <a class="nav-link" href="/movies"
+                        ><div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
+                            Movies</a
+                        >
+                        <a class="nav-link" href="/awards"
+                        ><div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
+                            Awards</a
+                        >
                     </div>
                 </div>
             </div>
@@ -78,34 +76,15 @@
                 <div class="row justify-content-center">
                     <div class="col-lg-7">
                         <div class="card shadow-lg border-0 rounded-lg mt-5">
-                            <div class="card-header"><h3 class="text-center font-weight-light my-4">Edit actor</h3></div>
+                            <div class="card-header"><h3 class="text-center font-weight-light my-4">Add actor award</h3></div>
                             <div class="card-body">
-                                <form action="#" th:action="@{/saveActor}" th:object="${actor}" method="post" >
-                                    <input th:field="*{id}" type="hidden">
+                                <form action="#" th:action="@{/saveActorAward}" th:object="${award}" method="post" >
+                                    <input th:field="*{actor}" type="hidden">
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label class="small mb-1" for="inputName">Name</label>
-                                            <input th:field="*{name}" class="form-control py-4" id="inputName" type="text" placeholder="Enter name" /></div>
+                                            <label class="small mb-1" for="inputName">Award name</label>
+                                            <input th:field="*{name}" class="form-control py-4" id="inputName" type="text" placeholder="Enter title" /></div>
                                     </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label class="small mb-1" for="inputSurname">Surname</label>
-                                            <input th:field="*{surname}" class="form-control py-4" id="inputSurname" type="text" placeholder="Enter surname" /></div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label class="small mb-1" for="inputDate">Date of birth</label>
-                                            <input th:field="*{date_of_birth}" class="form-control py-4" id="inputDate" type="date"/></div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label class="small mb-1" >Country</label>
-                                            <select th:field="*{country}">
-                                                <option th:each="c : ${countries}" th:value="${c.id}" th:text="${c.name}"></option>
-                                            </select>
-                                        </div>
-                                    </div>
-
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label class="small mb-1" >Movie</label>
@@ -114,7 +93,6 @@
                                             </select>
                                         </div>
                                     </div>
-
                                     <div class="form-group mt-4 mb-0">
                                         <input type="submit" class="btn btn-primary btn-block">
                                     </div>

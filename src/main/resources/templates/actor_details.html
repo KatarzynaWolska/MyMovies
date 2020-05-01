@@ -135,7 +135,30 @@
                             </table>
                         </div>
 
+                        <label class="col-form-label">Awards:</label>
+
+                        <form th:action="@{/addActorAward/{path}(path=${actor.id})}">
+                            <button>Add actor award</button>
+                        </form>
+
+                        <div class="table-responsive">
+                            <table class="table table-bordered" id="dataTable2" width="100%" cellspacing="0">
+                                <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Movie</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr th:each="a : ${awards}">
+                                    <td th:text="${a.name}"></td>
+                                    <td th:text="${a.movie.title}"></td>
+                                </tr>
+                                </tbody>
+                            </table>
                         </div>
+
+                    </div>
                     </div>
             </div>
         </main>
