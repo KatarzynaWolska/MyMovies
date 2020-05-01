@@ -28,6 +28,7 @@ public class CountryService {
     }
 
     public void addCountry(Country country) {
+        System.out.println(country.getId());
         countryRepo.save(country);
     }
 

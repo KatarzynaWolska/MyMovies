@@ -52,4 +52,12 @@ public class CountryController {
         country.ifPresent(c -> model.addAttribute("country", c));
         return "country_details";
     }
+
+    @RequestMapping("/editCountry/{cid}")
+    public String editCountry(@PathVariable("cid") Integer cid, Model model) {
+        Optional<Country> country = countryService.getCountry(cid);
+        country.ifPresent(c -> model.addAttribute("country", c));
+        country.ifPresent(c -> System.out.println(c.getId()));
+        return "edit_country";
+    }
 }
