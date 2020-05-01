@@ -1,10 +1,7 @@
 package com.example.mymovies.controller;
 
 import com.example.mymovies.model.*;
-import com.example.mymovies.service.ActorService;
-import com.example.mymovies.service.DirectorService;
-import com.example.mymovies.service.MovieCategoryService;
-import com.example.mymovies.service.MovieService;
+import com.example.mymovies.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -29,6 +26,9 @@ public class MovieController {
 
     @Autowired
     private ActorService actorService;
+
+    @Autowired
+    private MovieAwardService awardService;
 
     @RequestMapping("/movies")
     public String getMovies(Model model) {
@@ -60,6 +60,7 @@ public class MovieController {
     public String getMovie(@PathVariable("mid") Integer mid, Model model) {
         Optional<Movie> movie = movieService.getMovie(mid);
         movie.ifPresent(m -> model.addAttribute("movie", m));
+        movie.ifPresent(m -> model.addAttribute("awards", m.getAwards()));
         return "movie_details";
     }
 
@@ -80,5 +81,21 @@ public class MovieController {
         model.addAttribute("directors", directorService.getDirectors());
         model.addAttribute("actors", actorService.getActors());
         return "edit_movie";
+    }
+
+    @RequestMapping("/addMovieAward/{mid}")
+    public String addMovieAward(@PathVariable("mid") Integer mid, Model model) {
+        Optional<Movie> movie = movieService.getMovie(mid);
+        Award award = new Award();
+        movie.ifPresent(m -> award.setMovie(m));
+        movie.ifPresent(m -> m.getAwards().add(award));
+        model.addAttribute("award", award);
+        return "add_movie_award";
+    }
+
+    @RequestMapping("/saveMovieAward")
+    public String saveMovieAward(@ModelAttribute("award") Award award) {
+        awardService.addMovieAward(award);
+        return "redirect:/";
     }
 }

@@ -94,8 +94,6 @@ public class ActorController {
 
     @RequestMapping("/saveActorAward")
     public String saveActorAward(@ModelAttribute("award") ActorAward award) {
-        System.out.println(award.getActor());
-        System.out.println(award.getMovie());
         actorAwardService.addActorAward(award);
         return "redirect:/";
     }
