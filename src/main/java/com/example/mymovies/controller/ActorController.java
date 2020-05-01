@@ -87,8 +87,8 @@ public class ActorController {
         ActorAward award = new ActorAward();
         actor.ifPresent(a -> award.setActor(a));
         actor.ifPresent(a -> a.getAwards().add(award));
+        actor.ifPresent(a -> model.addAttribute("movies", a.getMovies()));
         model.addAttribute("award", award);
-        model.addAttribute("movies", movieService.getMovies());
         return "add_actor_award";
     }
 
