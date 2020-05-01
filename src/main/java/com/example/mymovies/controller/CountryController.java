@@ -50,6 +50,8 @@ public class CountryController {
     public String getCountry(@PathVariable("cid") Integer cid, Model model) {
         Optional<Country> country = countryService.getCountry(cid);
         country.ifPresent(c -> model.addAttribute("country", c));
+        country.ifPresent(c -> model.addAttribute("directors", c.getDirectors()));
+        country.ifPresent(c -> model.addAttribute("actors", c.getActors()));
         return "country_details";
     }
 

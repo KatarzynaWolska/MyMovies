@@ -93,6 +93,49 @@
                                 </div>
                             </div>
                         </div>
+
+                        <label class="col-form-label">Directors:</label>
+
+                        <div class="table-responsive">
+                            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Surname</th>
+                                    <th>Date of birth</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr th:each="d : ${directors}">
+                                    <td th:text="${d.name}"></td>
+                                    <td th:text="${d.surname}"></td>
+                                    <td th:text="${d.date_of_birth}"></td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <label class="col-form-label">Actors:</label>
+
+                        <div class="table-responsive">
+                            <table class="table table-bordered" id="dataTable2" width="100%" cellspacing="0">
+                                <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Surname</th>
+                                    <th>Date of birth</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr th:each="a : ${actors}">
+                                    <td th:text="${a.name}"></td>
+                                    <td th:text="${a.surname}"></td>
+                                    <td th:text="${a.date_of_birth}"></td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
                     </div>
                 </div>
             </div>
