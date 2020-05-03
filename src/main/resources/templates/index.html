@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
     <head>
         <meta charset="utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -84,6 +84,14 @@
                         <ol class="breadcrumb mb-4">
                             <li class="breadcrumb-item active">Dashboard</li>
                         </ol>
+
+                        <form th:action="@{/export}">
+                            <button>Export database</button>
+                        </form>
+
+                        <form th:action="@{/import}">
+                            <button>Import database</button>
+                        </form>
                     </div>
                 </main>
                 <footer class="py-4 bg-light mt-auto">
