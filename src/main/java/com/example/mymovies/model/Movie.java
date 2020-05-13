@@ -31,6 +31,9 @@ public class Movie {
     @Column(name = "is_favourite", columnDefinition = "boolean default false")
     private Boolean isFav;
 
+    @Column(name = "watched", columnDefinition = "boolean default false")
+    private Boolean watched;
+
     @Column(name ="rating")
     private Integer rating;
 
@@ -119,7 +122,6 @@ public class Movie {
         return isFav;
     }
 
-    @Transactional
     public void setFav(Boolean fav) {
         isFav = fav;
     }
@@ -130,5 +132,13 @@ public class Movie {
 
     public void setRating(Integer rating) {
         this.rating = rating;
+    }
+
+    public Boolean getWatched() {
+        return watched;
+    }
+
+    public void setWatched(Boolean watched) {
+        this.watched = watched;
     }
 }

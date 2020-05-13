@@ -122,6 +122,20 @@
                             </div>
                         </div>
 
+                        <div class="form-row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="col-form-label" for="inputWatched">Is watched:</label>
+                                    <div th:if="${movie.watched}">
+                                        <label class="col-form-label" id="inputWatched" th:text="Yes"></label>
+                                    </div>
+                                    <div th:unless="${movie.watched}">
+                                        <label class="col-form-label" th:text="No"></label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                         <label class="col-form-label">Awards:</label>
 
                         <form th:action="@{/addMovieAward/{path}(path=${movie.id})}">
