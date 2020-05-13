@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -111,6 +111,14 @@
                                             <label class="small mb-1" >Actors</label>
                                             <select th:field="*{actors}">
                                                 <option th:each="a : ${actors}" th:value="${a.id}" th:text="${a}"></option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="small mb-1" >Rating</label>
+                                            <select th:field="*{rating}">
+                                                <option th:each="n : ${#numbers.sequence(1,5)}" th:value="${n}" th:text="${n}"></option>
                                             </select>
                                         </div>
                                     </div>

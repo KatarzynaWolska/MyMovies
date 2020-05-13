@@ -31,6 +31,9 @@ public class Movie {
     @Column(name = "is_favourite", columnDefinition = "boolean default false")
     private Boolean isFav;
 
+    @Column(name ="rating")
+    private Integer rating;
+
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
             name = "Category_Movie",
@@ -119,5 +122,13 @@ public class Movie {
     @Transactional
     public void setFav(Boolean fav) {
         isFav = fav;
+    }
+
+    public Integer getRating() {
+        return rating;
+    }
+
+    public void setRating(Integer rating) {
+        this.rating = rating;
     }
 }
