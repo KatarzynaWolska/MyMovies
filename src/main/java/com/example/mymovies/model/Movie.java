@@ -2,6 +2,7 @@ package com.example.mymovies.model;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -26,6 +27,9 @@ public class Movie {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "director_id")
     private Director director;
+
+    @Column(name = "is_favourite", columnDefinition = "boolean default false")
+    private Boolean isFav;
 
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
@@ -106,5 +110,14 @@ public class Movie {
 
     public void setAwards(Set<Award> awards) {
         this.awards = awards;
+    }
+
+    public Boolean isFav() {
+        return isFav;
+    }
+
+    @Transactional
+    public void setFav(Boolean fav) {
+        isFav = fav;
     }
 }

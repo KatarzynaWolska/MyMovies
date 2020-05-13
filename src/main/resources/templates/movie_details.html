@@ -83,6 +83,10 @@
                 <form th:action="@{/editMovie/{path}(path=${movie.id})}">
                     <button>Edit</button>
                 </form>
+
+                <form th:action="@{/addToFavourite/{path}(path=${movie.id})}">
+                    <button>Add movie to favourite</button>
+                </form>
                 <div class="card mb-4">
                     <div class="card-body">
                         <div class="form-row">

@@ -98,4 +98,20 @@ public class MovieController {
         awardService.addMovieAward(award);
         return "redirect:/";
     }
+
+    @RequestMapping("/addToFavourite/{mid}")
+    public String addToFav(@PathVariable("mid") Integer mid) {
+        Optional<Movie> movie = movieService.getMovie(mid);
+        movie.ifPresent(m -> m.setFav(Boolean.TRUE));
+        movie.ifPresent(m -> movieService.addMovie(m));
+        movie.ifPresent(m -> System.out.println(m.isFav()));
+        return "redirect:/movies/" + mid;
+    }
+
+    @RequestMapping("/favouriteMovies")
+    public String getFavMovies(Model model) {
+        List<Movie> favMovies = movieService.getFavMovies();
+        model.addAttribute("movies", favMovies);
+        return "movies";
+    }
 }

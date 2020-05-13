@@ -42,6 +42,10 @@ public class MovieService {
         movieRepo.delete(movie); // chyba się usuwa z Set<>
     }
 
+    public List<Movie> getFavMovies() {
+        return movieRepo.findByIsFavTrue();
+    }
+
     //@PostMapping(path = "/movies/{mid}/awards")
     public void addMovieAward(@RequestBody Award award, @PathVariable("mid") Integer mid) {
         Movie movie = movieRepo.getOne(mid);
