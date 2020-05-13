@@ -9,6 +9,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import javax.persistence.*;
 import java.security.AlgorithmConstraints;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -40,6 +41,10 @@ public class Director {
 
     @OneToMany(mappedBy="director")
     private Set<DirectorAward> awards;
+
+    public Director() {
+        this.awards = new HashSet<>();
+    }
 
     public Integer getId() {
         return id;

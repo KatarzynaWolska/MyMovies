@@ -29,6 +29,7 @@ public class MovieService {
     //@PostMapping(path = "/movies", consumes = {"application/json"})
     public void addMovie(@RequestBody Movie movie) {
         movieRepo.save(movie);
+
     }
 
     //@GetMapping(path = "/movies/{mid}")

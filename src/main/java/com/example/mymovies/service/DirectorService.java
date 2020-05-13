@@ -30,7 +30,7 @@ public class DirectorService {
     //@PostMapping(path = "/directors", consumes = {"application/json"})
     public void addDirector(@RequestBody Director director) {
         directorRepo.save(director);
-        //director.getCountry().getDirectors().add(director);
+        director.getCountry().getDirectors().add(director);
     }
 
     //@GetMapping(path = "/directors/{did}")
